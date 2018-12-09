@@ -13,5 +13,5 @@ lazy val macros = (project in file("macros")).settings(
 
 lazy val app = (project in file("app")).dependsOn(macros)
 .settings(
-  mainClass in Compile := Some("demo.usemarco.MacrosTestApp")
+  mainClass in (Compile, run) := Some("demo.usemacro.MacrosTestApp")
 )

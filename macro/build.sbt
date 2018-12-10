@@ -15,3 +15,11 @@ lazy val app = (project in file("app")).dependsOn(macros)
 .settings(
   mainClass in (Compile, run) := Some("demo.usemacro.MacrosTestApp")
 )
+
+// Workaround to call "run" on "mainClass" class from app.
+// Just don't know how to forward "sbt run" to "sbt app/run" in other way.
+lazy val root = (project in file(".")).dependsOn(app)
+.settings(
+  mainClass in (Compile, run) := (app / Compile / mainClass).value
+)
+
